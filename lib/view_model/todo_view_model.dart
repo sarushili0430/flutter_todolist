@@ -23,7 +23,8 @@ class TodoNotifier extends _$TodoNotifier {
 
   void updateTodo(int index) {
     final newState = state[index].copyWith(status: !state[index].status);
-    state[index] = newState;
+    final newList = List<Todo>.from(state)..[index] = newState;
+    state = newList;
   }
 
   void deleteTodo(Todo todo) {
