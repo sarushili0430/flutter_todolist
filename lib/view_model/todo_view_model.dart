@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../model/todo.dart';
 
@@ -17,8 +18,8 @@ class TodoNotifier extends _$TodoNotifier {
     ];
   }
 
-  void addTodo(Todo todo) {
-    state = [...state, todo];
+  void addTodo(String title) {
+    state = [...state, Todo(title: title, status: false)];
   }
 
   void updateTodo(int index) {

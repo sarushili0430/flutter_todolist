@@ -24,11 +24,6 @@ class TodoListPage extends ConsumerWidget {
           child: Icon(Icons.add),
           onPressed: () async {
             final newTodo = await Navigator.of(context).pushNamed('/todo_add');
-            if (newTodo != "" && newTodo != null) {
-              ref
-                  .read(todoNotifierProvider.notifier)
-                  .addTodo(Todo(title: "newTodo", status: false));
-            }
           }),
     );
   }

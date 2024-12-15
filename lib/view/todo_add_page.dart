@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:todo/view_model/view_models.dart';
 
-class TodoAddPage extends StatelessWidget {
+class TodoAddPage extends ConsumerWidget {
   const TodoAddPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
         body: Center(
             child: Column(
@@ -14,7 +15,7 @@ class TodoAddPage extends StatelessWidget {
         TextInput(),
         TextButton(
             onPressed: () {
-              Navigator.of(context).pop();
+              Navigator.of(context).pop("");
             },
             child: Text("キャンセル"))
       ],
@@ -22,35 +23,28 @@ class TodoAddPage extends StatelessWidget {
   }
 }
 
-class TextInput extends StatefulWidget {
-  const TextInput({super.key});
-
+class TextInput extends ConsumerWidget {
+  final TextEditingController _textController = TextEditingController();
   @override
-  State<TextInput> createState() => _TextInputState();
-}
-
-class _TextInputState extends State<TextInput> {
-  final ValueNotifier<String> _text = ValueNotifier<String>("");
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
         padding: EdgeInsets.all(32),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(height: 8),
-            TextField(
-              onChanged: (String value) {
-                _text.value = value;
-              },
+            TextFormField(
+              controller: _textController,
             ),
             const SizedBox(height: 32),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue, foregroundColor: Colors.white),
               onPressed: () {
-                Navigator.of(context).pop(_text.value);
+                ref
+                    .read(todoNotifierProvider.notifier)
+                    .addTodo(_textController.text);
+                Navigator.of(context).pop();
               },
               child: Text('リスト追加'),
             ),
