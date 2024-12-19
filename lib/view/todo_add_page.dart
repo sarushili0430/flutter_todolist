@@ -17,18 +17,18 @@ class TodoAddPage extends ConsumerWidget {
               icon: Icon(Icons.close)),
           centerTitle: true,
         ),
-        body: Center(
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        body: Column(
           children: [
             TextInput(),
           ],
-        )));
+        ));
   }
 }
 
 class TextInput extends ConsumerWidget {
-  final TextEditingController _textController = TextEditingController();
+  final TextEditingController _titleTextController = TextEditingController();
+  final TextEditingController _descriptionTextController =
+      TextEditingController();
 
   TextInput({super.key});
   @override
@@ -36,20 +36,39 @@ class TextInput extends ConsumerWidget {
     return Container(
         padding: EdgeInsets.all(32),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(height: 8),
-            TextFormField(
-              controller: _textController,
-            ),
-            const SizedBox(height: 32),
+            TextField(
+                controller: _titleTextController,
+                decoration: InputDecoration(
+                  hintText: "Title",
+                  focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Theme.of(context).primaryColor)),
+                  border: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Theme.of(context).primaryColor)),
+                )),
+            const SizedBox(height: 16),
+            TextField(
+                controller: _descriptionTextController,
+                decoration: InputDecoration(
+                  hintText: "",
+                  focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Theme.of(context).primaryColor)),
+                  border: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: Theme.of(context).primaryColor)),
+                )),
+            const SizedBox(height: 16),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue, foregroundColor: Colors.white),
               onPressed: () {
                 ref
                     .read(todoNotifierProvider.notifier)
-                    .addTodo(_textController.text);
+                    .addTodo(_titleTextController.text);
                 Navigator.of(context).pop();
               },
               child: Text('リスト追加'),

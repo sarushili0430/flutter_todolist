@@ -19,6 +19,7 @@ class MyTodoApp extends StatelessWidget {
       theme: ThemeData(
         // テーマカラー
         primarySwatch: Colors.blue,
+        primaryColor: Colors.blueAccent,
         useMaterial3: true,
       ),
       // リスト一覧画面を表示
