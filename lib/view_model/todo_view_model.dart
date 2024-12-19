@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../model/todo.dart';
 
@@ -8,7 +7,6 @@ part 'todo_view_model.g.dart';
 class TodoNotifier extends _$TodoNotifier {
   @override
   List<Todo> build() {
-    // TODO: implement build
     return [
       Todo(title: "aaaaa", status: false),
       Todo(title: "bbbbbbbb", status: false),
@@ -29,6 +27,8 @@ class TodoNotifier extends _$TodoNotifier {
   }
 
   void deleteTodo(Todo todo) {
-    state.remove(todo);
+    final newList = List<Todo>.from(state);
+    newList.remove(todo);
+    state = newList;
   }
 }

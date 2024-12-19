@@ -8,23 +8,29 @@ class TodoAddPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
+        appBar: AppBar(
+          title: Text("New ToDo"),
+          leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pop("");
+              },
+              icon: Icon(Icons.close)),
+          centerTitle: true,
+        ),
         body: Center(
             child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        TextInput(),
-        TextButton(
-            onPressed: () {
-              Navigator.of(context).pop("");
-            },
-            child: Text("キャンセル"))
-      ],
-    )));
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextInput(),
+          ],
+        )));
   }
 }
 
 class TextInput extends ConsumerWidget {
   final TextEditingController _textController = TextEditingController();
+
+  TextInput({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(

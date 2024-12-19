@@ -8,15 +8,18 @@ void main() {
 }
 
 class MyTodoApp extends StatelessWidget {
+  const MyTodoApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    const title = "My Todo App";
+    const title = "To-Do";
     return MaterialApp(
       // アプリ名
       title: title,
       theme: ThemeData(
         // テーマカラー
         primarySwatch: Colors.blue,
+        useMaterial3: true,
       ),
       // リスト一覧画面を表示
       home: TodoListPage(title: title),
@@ -26,6 +29,7 @@ class MyTodoApp extends StatelessWidget {
             ),
         '/todo_add': (BuildContext context) => TodoAddPage()
       },
+      debugShowCheckedModeBanner: false,
     );
   }
 }
