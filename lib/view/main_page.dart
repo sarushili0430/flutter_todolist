@@ -60,12 +60,19 @@ class DoneList extends ConsumerWidget {
           return Card(
               child: ListTile(
             leading: IconButton(
-              icon: Icon(finishedList[index].status
-                  ? Icons.check_box
-                  : Icons.check_box_outline_blank),
+                icon: Icon(finishedList[index].status
+                    ? Icons.check_box
+                    : Icons.check_box_outline_blank),
+                onPressed: () {
+                  ref.read(todoNotifierProvider.notifier).updateTodo(index);
+                  print(todos);
+                }),
+            trailing: IconButton(
+              icon: Icon(Icons.delete),
               onPressed: () {
-                ref.read(todoNotifierProvider.notifier).updateTodo(index);
-                print(todos);
+                ref
+                    .read(todoNotifierProvider.notifier)
+                    .deleteTodo(todos[index]);
               },
             ),
             title: Text(finishedList[index].title),
