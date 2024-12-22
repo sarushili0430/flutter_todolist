@@ -1,11 +1,11 @@
 workflows:
-  release-workflow:
-    name: Release Workflow
+  master-workflow:
+    name: Master Workflow
     triggering:
       events:
         - push
       branch_patterns:
-        - pattern: main
+        - pattern: master
           include: true
     scripts:
       - name: Install Flutter dependencies
