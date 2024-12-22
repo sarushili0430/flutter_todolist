@@ -1,11 +1,7 @@
 workflows:
   release-workflow:
     name: Release Workflow
-    triggers:
-      - push:
-          branches:
-            only:
-              - release
+    branch: release
     scripts:
       - name: Install Flutter dependencies
         script: flutter pub get
@@ -19,11 +15,7 @@ workflows:
 
   develop-workflow:
     name: Develop Workflow
-    triggers:
-      - push:
-          branches:
-            only:
-              - develop
+    branch: develop
     scripts:
       - name: Install Flutter dependencies
         script: flutter pub get
