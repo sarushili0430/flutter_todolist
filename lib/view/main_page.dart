@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../model/todo.dart';
 import '../view_model/view_models.dart';
+import 'package:go_router/go_router.dart';
 
 class TodoListPage extends ConsumerWidget {
   const TodoListPage({super.key, required this.title});
@@ -38,7 +39,7 @@ class TodoListPage extends ConsumerWidget {
         floatingActionButton: FloatingActionButton(
             child: Icon(Icons.add),
             onPressed: () {
-              Navigator.of(context).pushNamed('/todo_add');
+              context.go('/todo_add');
             }),
       ),
     );

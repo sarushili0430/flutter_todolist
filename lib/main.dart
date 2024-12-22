@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'view/views.dart';
+import 'package:todo/router.dart';
 
 void main() {
   // 最初に表示するWidget
@@ -13,7 +13,10 @@ class MyTodoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const title = "To-Do";
-    return MaterialApp(
+    return MaterialApp.router(
+      routerDelegate: goRouter.routerDelegate,
+      routeInformationParser: goRouter.routeInformationParser,
+      routeInformationProvider: goRouter.routeInformationProvider,
       // アプリ名
       title: title,
       theme: ThemeData(
@@ -22,14 +25,7 @@ class MyTodoApp extends StatelessWidget {
         primaryColor: Colors.blueAccent,
         useMaterial3: true,
       ),
-      // リスト一覧画面を表示
-      home: TodoListPage(title: title),
-      routes: <String, WidgetBuilder>{
-        '/home': (BuildContext context) => TodoListPage(
-              title: title,
-            ),
-        '/todo_add': (BuildContext context) => TodoAddPage()
-      },
+      // リスト一覧画面を表示,
       debugShowCheckedModeBanner: false,
     );
   }

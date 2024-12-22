@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:todo/view_model/view_models.dart';
+import 'package:go_router/go_router.dart';
 
 class TodoAddPage extends ConsumerWidget {
   const TodoAddPage({super.key});
@@ -12,7 +13,7 @@ class TodoAddPage extends ConsumerWidget {
           title: Text("New ToDo"),
           leading: IconButton(
               onPressed: () {
-                Navigator.of(context).pop("");
+                context.go("/");
               },
               icon: Icon(Icons.close)),
           centerTitle: true,
@@ -69,7 +70,7 @@ class TextInput extends ConsumerWidget {
                 ref
                     .read(todoNotifierProvider.notifier)
                     .addTodo(_titleTextController.text);
-                Navigator.of(context).pop();
+                context.go("/");
               },
               child: Text('リスト追加'),
             ),
