@@ -5,7 +5,7 @@ workflows:
       events:
         - push
       branch_patterns:
-        - pattern: release
+        - pattern: main
           include: true
     scripts:
       - name: Install Flutter dependencies
