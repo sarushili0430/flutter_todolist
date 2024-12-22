@@ -1,7 +1,12 @@
 workflows:
   release-workflow:
     name: Release Workflow
-    branch: release
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: release
+          include: true
     scripts:
       - name: Install Flutter dependencies
         script: flutter pub get
@@ -15,11 +20,16 @@ workflows:
 
   develop-workflow:
     name: Develop Workflow
-    branch: develop
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: develop
+          include: true
     scripts:
       - name: Install Flutter dependencies
         script: flutter pub get
-      - name: Run debug build
+      - name: Build debug APK
         script: flutter build apk --debug
     artifacts:
       - build/**/outputs/**/*.apk
