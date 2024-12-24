@@ -1,21 +1,18 @@
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:todo/model/todo.dart';
+import 'package:riverpod/riverpod.dart';
 
-class TodoRepository {
-  static final TodoRepository _instance = TodoRepository._internal();
-  Database? _database;
+part 'todo_repository.g.dart';
 
-  TodoRepository._internal();
+@Riverpod(keepAlive: true)
+class TodoRepository extends _$TodoRepository {
+  late Database db;
 
-  factory TodoRepository() {
-    return _instance;
-  }
-
-  Future<Database> get database async {
-    if (_database != null) return _database!;
-
-    _database = await _initDatabase();
-    return _database!;
+  @override
+  FutureOr<List<Todo>> build() async {
+    db = await _initDatabase();
+    return getAllTodos();
   }
 
   Future<Database> _initDatabase() async {
@@ -36,18 +33,15 @@ class TodoRepository {
   }
 
   Future<int> insertTodo(Todo todo) async {
-    final db = await database;
     return await db.insert('items', todo.toMap());
   }
 
   Future<List<Todo>> getAllTodos() async {
-    final db = await database;
     final result = await db.query('todos');
     return result.map((map) => Todo.fromMap(map)).toList();
   }
 
   Future<int> deleteItem(int id) async {
-    final db = await database;
     return await db.delete(
       'todos',
       where: 'id = ?',
@@ -56,10 +50,6 @@ class TodoRepository {
   }
 
   Future<void> closeDatabase() async {
-    final db = await _database;
-    if (db != null) {
-      await db.close();
-      _database = null;
-    }
+    await db.close();
   }
 }
