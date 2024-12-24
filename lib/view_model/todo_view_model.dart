@@ -1,5 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../model/todo.dart';
+import '../repository/todo_repository.dart';
 
 part 'todo_view_model.g.dart';
 
@@ -7,13 +8,8 @@ part 'todo_view_model.g.dart';
 class TodoNotifier extends _$TodoNotifier {
   @override
   List<Todo> build() {
-    return [
-      Todo(id: 1, title: "aaaaa", status: false),
-      Todo(id: 1, title: "bbbbbbbb", status: false),
-      Todo(id: 1, title: "bbbbccccc", status: false),
-      Todo(id: 1, title: "bbbbbbbb", status: false),
-      Todo(id: 1, title: "bbbbccccc", status: false)
-    ];
+    final state = ref.watch(todoRepositoryProvider);
+    return state.value ?? [];
   }
 
   void addTodo(String title) {
