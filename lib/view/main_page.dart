@@ -4,8 +4,6 @@ import '../model/todo.dart';
 import '../view_model/view_models.dart';
 import 'package:go_router/go_router.dart';
 
-const codemagictest = "";
-
 class TodoListPage extends ConsumerWidget {
   const TodoListPage({super.key, required this.title});
 

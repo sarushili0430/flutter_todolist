@@ -8,16 +8,16 @@ class TodoNotifier extends _$TodoNotifier {
   @override
   List<Todo> build() {
     return [
-      Todo(title: "aaaaa", status: false),
-      Todo(title: "bbbbbbbb", status: false),
-      Todo(title: "bbbbccccc", status: false),
-      Todo(title: "bbbbbbbb", status: false),
-      Todo(title: "bbbbccccc", status: false)
+      Todo(id: 1, title: "aaaaa", status: false),
+      Todo(id: 1, title: "bbbbbbbb", status: false),
+      Todo(id: 1, title: "bbbbccccc", status: false),
+      Todo(id: 1, title: "bbbbbbbb", status: false),
+      Todo(id: 1, title: "bbbbccccc", status: false)
     ];
   }
 
   void addTodo(String title) {
-    state = [...state, Todo(title: title, status: false)];
+    state = [...state, Todo(id: 1, title: title, status: false)];
   }
 
   void updateTodo(int index) {
