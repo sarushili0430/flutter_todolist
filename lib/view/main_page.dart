@@ -14,7 +14,7 @@ class TodoListPage extends ConsumerWidget {
     //Riverpod 2.0からProviderは自動生成されるようになった
     //settingsマークにpaddingを持たせる
     return DefaultTabController(
-      initialIndex: 1,
+      initialIndex: 0,
       length: 2,
       child: Scaffold(
         appBar: AppBar(
