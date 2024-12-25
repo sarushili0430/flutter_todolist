@@ -9,11 +9,16 @@ class TodoNotifier extends _$TodoNotifier {
   @override
   List<Todo> build() {
     final state = ref.watch(todoRepositoryProvider);
+    print(state.value);
     return state.value ?? [];
   }
 
   void addTodo(String title) {
     state = [...state, Todo(id: 1, title: title, status: false)];
+    print(state);
+    ref
+        .read(todoRepositoryProvider.notifier)
+        .insertTodo(Todo(id: 1, title: title, status: false));
   }
 
   void updateTodo(int index) {

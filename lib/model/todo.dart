@@ -15,7 +15,7 @@ abstract class Todo implements _$Todo {
     return Todo(
       id: map['id'],
       title: map['title'],
-      status: map['status'],
+      status: map['status'] == 1 ? true : false,
     );
   }
 

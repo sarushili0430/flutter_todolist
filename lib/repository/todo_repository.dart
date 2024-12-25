@@ -7,11 +7,11 @@ part 'todo_repository.g.dart';
 
 @Riverpod(keepAlive: true)
 class TodoRepository extends _$TodoRepository {
-  late Database db;
+  late Database _db;
 
   @override
   FutureOr<List<Todo>> build() async {
-    db = await _initDatabase();
+    _db = await _initDatabase();
     return getAllTodos();
   }
 
@@ -33,16 +33,16 @@ class TodoRepository extends _$TodoRepository {
   }
 
   Future<int> insertTodo(Todo todo) async {
-    return await db.insert('items', todo.toMap());
+    return await _db.insert('todos', todo.toMap());
   }
 
   Future<List<Todo>> getAllTodos() async {
-    final result = await db.query('todos');
+    final result = await _db.query('todos');
     return result.map((map) => Todo.fromMap(map)).toList();
   }
 
   Future<int> deleteItem(int id) async {
-    return await db.delete(
+    return await _db.delete(
       'todos',
       where: 'id = ?',
       whereArgs: [id],
@@ -50,6 +50,6 @@ class TodoRepository extends _$TodoRepository {
   }
 
   Future<void> closeDatabase() async {
-    await db.close();
+    await _db.close();
   }
 }

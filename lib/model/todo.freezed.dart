@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Todo {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   bool get status => throw _privateConstructorUsedError;
 
@@ -31,7 +31,7 @@ abstract class $TodoCopyWith<$Res> {
   factory $TodoCopyWith(Todo value, $Res Function(Todo) then) =
       _$TodoCopyWithImpl<$Res, Todo>;
   @useResult
-  $Res call({int id, String title, bool status});
+  $Res call({int? id, String title, bool status});
 }
 
 /// @nodoc
@@ -49,15 +49,15 @@ class _$TodoCopyWithImpl<$Res, $Val extends Todo>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? title = null,
     Object? status = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -77,7 +77,7 @@ abstract class _$$TodoImplCopyWith<$Res> implements $TodoCopyWith<$Res> {
       __$$TodoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String title, bool status});
+  $Res call({int? id, String title, bool status});
 }
 
 /// @nodoc
@@ -92,15 +92,15 @@ class __$$TodoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? title = null,
     Object? status = null,
   }) {
     return _then(_$TodoImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -120,7 +120,7 @@ class _$TodoImpl extends _Todo {
       : super._();
 
   @override
-  final int id;
+  final int? id;
   @override
   final String title;
   @override
@@ -155,13 +155,13 @@ class _$TodoImpl extends _Todo {
 
 abstract class _Todo extends Todo {
   factory _Todo(
-      {required final int id,
+      {required final int? id,
       required final String title,
       required final bool status}) = _$TodoImpl;
   _Todo._() : super._();
 
   @override
-  int get id;
+  int? get id;
   @override
   String get title;
   @override
