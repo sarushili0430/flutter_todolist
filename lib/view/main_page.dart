@@ -65,7 +65,9 @@ class DoneList extends ConsumerWidget {
                     ? Icons.check_box
                     : Icons.check_box_outline_blank),
                 onPressed: () {
-                  ref.read(todoNotifierProvider.notifier).updateTodo(index);
+                  ref
+                      .read(todoNotifierProvider.notifier)
+                      .updateTodo(finishedList[index].id!);
                   print(todos);
                 }),
             trailing: IconButton(
@@ -73,7 +75,7 @@ class DoneList extends ConsumerWidget {
               onPressed: () {
                 ref
                     .read(todoNotifierProvider.notifier)
-                    .deleteTodo(todos[index]);
+                    .deleteTodo(finishedList[index].id!);
               },
             ),
             title: Text(finishedList[index].title),
@@ -99,7 +101,9 @@ class TodoList extends ConsumerWidget {
                   ? Icons.check_box
                   : Icons.check_box_outline_blank),
               onPressed: () {
-                ref.read(todoNotifierProvider.notifier).updateTodo(index);
+                ref
+                    .read(todoNotifierProvider.notifier)
+                    .updateTodo(todoList[index].id!);
                 print(todoList);
               },
             ),

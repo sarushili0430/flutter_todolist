@@ -6,7 +6,7 @@ part 'todo.freezed.dart';
 abstract class Todo implements _$Todo {
   const Todo._();
   factory Todo({
-    required int id,
+    int? id,
     required String title,
     required bool status,
   }) = _Todo;
@@ -20,6 +20,6 @@ abstract class Todo implements _$Todo {
   }
 
   Map<String, dynamic> toMap() {
-    return {'id': id, 'title': title, 'status': status};
+    return {'title': title, 'status': status == true ? 1 : 0};
   }
 }

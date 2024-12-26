@@ -8,6 +8,7 @@ class TodoAddPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(todoNotifierProvider);
     return Scaffold(
         appBar: AppBar(
           title: Text("New ToDo"),

@@ -11,6 +11,9 @@ class TodoRepository extends _$TodoRepository {
 
   @override
   FutureOr<List<Todo>> build() async {
+    final databasePath = await getDatabasesPath();
+    final path = '$databasePath/app_database.db';
+
     _db = await _initDatabase();
     return getAllTodos();
   }
@@ -41,7 +44,18 @@ class TodoRepository extends _$TodoRepository {
     return result.map((map) => Todo.fromMap(map)).toList();
   }
 
-  Future<int> deleteItem(int id) async {
+  Future<int> updateTodo(int id, bool status) async {
+    final databasePath = await getDatabasesPath();
+    final path = '$databasePath/app_database.db';
+    return await _db.update(
+      'todos',
+      {"status": status == false ? 0 : 1},
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
+
+  Future<int> deleteTodo(int id) async {
     return await _db.delete(
       'todos',
       where: 'id = ?',

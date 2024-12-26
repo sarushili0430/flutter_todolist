@@ -116,8 +116,7 @@ class __$$TodoImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TodoImpl extends _Todo {
-  _$TodoImpl({required this.id, required this.title, required this.status})
-      : super._();
+  _$TodoImpl({this.id, required this.title, required this.status}) : super._();
 
   @override
   final int? id;
@@ -155,7 +154,7 @@ class _$TodoImpl extends _Todo {
 
 abstract class _Todo extends Todo {
   factory _Todo(
-      {required final int? id,
+      {final int? id,
       required final String title,
       required final bool status}) = _$TodoImpl;
   _Todo._() : super._();
